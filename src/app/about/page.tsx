@@ -1,0 +1,24 @@
+import { lifeSavers, storyScript } from "@/lib/fonts";
+
+export default function AboutPage() {
+  return (
+    <main className="section">
+      <div className="container grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-10">
+        <div>
+          <p className={`${lifeSavers.className} text-base font-normal text-[#ce9494]`}>Kontakt os</p>
+          <h1 className={`${storyScript.className} mt-2 text-5xl leading-tight text-[#ca9e4b] md:text-6xl`}>Skriv til Cecilie</h1>
+        </div>
+        <div className="grid gap-6 text-base leading-8 text-[var(--muted)]">
+          <p>
+            Har du spørgsmål til smykker, levering eller en ordre, så skriv til os på mail eller TikTok.
+          </p>
+          <p className="break-words">
+            Email: <a className="text-[var(--foreground)] underline underline-offset-4" href="mailto:ceciliessmykker@gmail.com">ceciliessmykker@gmail.com</a>
+            <br />
+            TikTok: <a className="text-[var(--foreground)] underline underline-offset-4" href="https://www.tiktok.com/@cecilies.smykker06">@cecilies.smykker06</a>
+          </p>
+        </div>
+      </div>
+    </main>
+  );
+}
