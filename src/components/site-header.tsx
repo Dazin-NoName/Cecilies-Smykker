@@ -23,8 +23,8 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--line)] bg-[#ffebeb]">
-      <div className="site-header-shell grid min-h-[142px] grid-rows-[86px_56px] bg-[#ffebeb]">
-        <div className="container header-main-row grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+      <div className="site-header-shell bg-[#ffebeb]">
+        <div className="container header-main-row">
           <nav className={`${lifeSavers.className} hidden text-sm font-normal tracking-0 lg:block`}>
             <div className="header-contact-stack">
               {utilityItems.map((item) => (
@@ -54,15 +54,15 @@ export function SiteHeader() {
             />
           </Link>
 
-          <Link href="/" className={`${storyScript.className} site-logo header-brand text-center text-4xl leading-none md:text-6xl`}>
+          <Link href="/" className={`${storyScript.className} site-logo header-brand text-center leading-none`}>
             Cecilies Smykker
           </Link>
 
           <div aria-hidden="true" />
         </div>
 
-        <div className="container header-nav-row flex items-center justify-center gap-8 border-t border-transparent">
-          <nav className={`${lifeSavers.className} desktop-brand-nav brand-scroll-nav flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-normal tracking-0 md:text-base`}>
+        <div className="container header-nav-row">
+          <nav className={`${lifeSavers.className} desktop-brand-nav brand-scroll-nav`}>
             {brandItems.map((item) => (
               <Link key={item.label} href={item.href} className="nav-underline whitespace-nowrap transition">
                 {item.label}
@@ -91,14 +91,14 @@ export function SiteHeader() {
           <Link
             href="/shop#search"
             aria-label="Søg"
-            className="search-link grid h-11 w-14 shrink-0 place-items-center border-l border-[#ce9494] pl-5 transition"
+            className="search-link shrink-0 border-l border-[#ce9494] transition"
           >
             <Search size={25} strokeWidth={1.45} />
           </Link>
           <Link
             href="/cart"
             aria-label="Kurv"
-            className="cart-link grid h-11 w-10 shrink-0 place-items-center transition"
+            className="cart-link shrink-0 transition"
           >
             <ShoppingBag size={22} strokeWidth={1.45} />
           </Link>
