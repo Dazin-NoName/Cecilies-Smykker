@@ -67,7 +67,6 @@ export function CartView() {
     return (
       <div className="empty-cart">
         <p className={`${lifeSavers.className} text-2xl text-[#ca9e4b]`}>Din kurv er tom</p>
-        <p className="mt-2 text-sm text-[var(--muted)]">Kurven gemmes kun i denne browser-session.</p>
         <Link className="button shop-all-button mt-6 inline-flex w-auto" href="/shop">
           Shop alle smykker
         </Link>
@@ -116,7 +115,6 @@ export function CartView() {
           <span>Subtotal</span>
           <strong>{formatPrice(subtotal)}</strong>
         </div>
-        <p className="mt-3 text-sm text-[var(--muted)]">Kurven nulstilles, når browser-sessionen lukkes.</p>
         <button className="button primary mt-6 w-full justify-center" disabled={isCheckingOut} onClick={checkout}>
           {isCheckingOut ? "Starter checkout..." : "Gå til betaling"}
         </button>
