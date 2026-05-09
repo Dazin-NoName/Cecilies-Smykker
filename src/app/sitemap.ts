@@ -2,6 +2,12 @@ import type { MetadataRoute } from "next";
 import { listProducts } from "@/lib/products";
 
 const siteUrl = "https://cecilies-smykker.dk";
+const brandPages = [
+  { slug: "cartier", priority: 0.85 },
+  { slug: "van-cleef", priority: 0.85 },
+  { slug: "louis-vuitton", priority: 0.7 },
+  { slug: "hermes", priority: 0.7 }
+];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await listProducts();
@@ -20,6 +26,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 0.9
     },
+    ...brandPages.map((brand) => ({
+      url: `${siteUrl}/shop?brand=${brand.slug}`,
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: brand.priority
+    })),
     {
       url: `${siteUrl}/about`,
       lastModified: now,
@@ -30,7 +42,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${siteUrl}/product/${product.slug}`,
       lastModified: now,
       changeFrequency: "weekly" as const,
-      priority: 0.8
+      priority: 0.8,
+      images: product.images.length > 0 ? product.images : [product.image]
     }))
   ];
 }

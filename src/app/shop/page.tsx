@@ -6,15 +6,6 @@ import { Search } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Shop smykker",
-  description:
-    "Shop alle smykker hos Cecilies Smykker. Find armbånd, halskæder og ringe i kuraterede kollektioner.",
-  alternates: {
-    canonical: "/shop"
-  }
-};
-
 const brandTitles: Record<string, string> = {
   cartier: "Cartier",
   "van-cleef": "Van Cleef",
@@ -22,10 +13,56 @@ const brandTitles: Record<string, string> = {
   hermes: "Hermes"
 };
 
+type ShopSearchParams = {
+  brand?: string;
+  collection?: string;
+  q?: string;
+};
+
+export async function generateMetadata({
+  searchParams
+}: {
+  searchParams: Promise<ShopSearchParams>;
+}): Promise<Metadata> {
+  const { brand, collection, q } = await searchParams;
+  const collectionName = brand && brandTitles[brand] ? brandTitles[brand] : collection;
+  const isSearch = Boolean(q?.trim());
+  const title = collectionName ? `${collectionName} smykker` : "Shop smykker";
+  const description = collectionName
+    ? `Shop ${collectionName} smykker hos Cecilies Smykker. Find kuraterede smykker, armbånd, halskæder og ringe online.`
+    : "Shop alle smykker hos Cecilies Smykker. Find armbånd, halskæder og ringe i kuraterede kollektioner.";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: brand && brandTitles[brand] && !isSearch ? `/shop?brand=${brand}` : "/shop"
+    },
+    robots: isSearch
+      ? {
+          index: false,
+          follow: true
+        }
+      : undefined,
+    openGraph: {
+      title: `${title} | Cecilies Smykker`,
+      description,
+      url: brand && brandTitles[brand] && !isSearch ? `/shop?brand=${brand}` : "/shop",
+      type: "website",
+      images: [
+        {
+          url: "/logo-small-round.png",
+          alt: "Cecilies Smykker logo"
+        }
+      ]
+    }
+  };
+}
+
 export default async function ShopPage({
   searchParams
 }: {
-  searchParams: Promise<{ brand?: string; collection?: string; q?: string }>;
+  searchParams: Promise<ShopSearchParams>;
 }) {
   const { collection, brand, q } = await searchParams;
   const query = q?.trim() ?? "";
@@ -35,9 +72,59 @@ export default async function ShopPage({
     collection: collectionName,
     q: query || undefined
   });
+  const pageUrl = brand && brandTitles[brand] && !query
+    ? `https://cecilies-smykker.dk/shop?brand=${brand}`
+    : "https://cecilies-smykker.dk/shop";
+  const shopJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `${title} hos Cecilies Smykker`,
+    description: collectionName
+      ? `Kuraterede ${collectionName} smykker hos Cecilies Smykker.`
+      : "Alle smykker hos Cecilies Smykker.",
+    url: pageUrl,
+    isPartOf: {
+      "@id": "https://cecilies-smykker.dk/#website"
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: filtered.map((product, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `https://cecilies-smykker.dk/product/${product.slug}`,
+        name: product.name
+      }))
+    }
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Cecilies Smykker",
+        item: "https://cecilies-smykker.dk"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: title,
+        item: pageUrl
+      }
+    ]
+  };
 
   return (
     <main className="section">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(shopJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <div className="container">
         <div className="mb-8">
           <div>

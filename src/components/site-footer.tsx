@@ -14,9 +14,11 @@ export function SiteFooter() {
         <div className="grid gap-2 text-sm text-[#ffebeb]">
           <Link href="/shop">Shop alle</Link>
         </div>
-        <div className="break-words text-sm text-[#ffebeb]">
-          <p>ceciliessmykker@gmail.com</p>
-        </div>
+        <address className="break-words text-sm not-italic text-[#ffebeb]">
+          <a href="mailto:ceciliessmykker@gmail.com">ceciliessmykker@gmail.com</a>
+          <br />
+          <a href="https://www.tiktok.com/@cecilies.smykker06">TikTok: @cecilies.smykker06</a>
+        </address>
       </div>
     </footer>
   );

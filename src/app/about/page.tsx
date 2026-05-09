@@ -11,8 +11,26 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const contactJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Kontakt Cecilies Smykker",
+    url: "https://cecilies-smykker.dk/about",
+    mainEntity: {
+      "@type": "Organization",
+      "@id": "https://cecilies-smykker.dk/#organization",
+      name: "Cecilies Smykker",
+      email: "ceciliessmykker@gmail.com",
+      sameAs: ["https://www.tiktok.com/@cecilies.smykker06"]
+    }
+  };
+
   return (
     <main className="section">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
+      />
       <div className="container grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-10">
         <div>
           <p className={`${lifeSavers.className} text-base font-normal text-[#ce9494]`}>Kontakt os</p>
