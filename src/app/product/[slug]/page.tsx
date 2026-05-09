@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ShieldCheck, Truck } from "lucide-react";
 import { BuyProduct } from "@/components/buy-product";
@@ -7,6 +8,50 @@ import { storyScript } from "@/lib/fonts";
 import { formatPrice, getProduct, listProducts } from "@/lib/products";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const product = await getProduct(slug);
+
+  if (!product) {
+    return {
+      title: "Produkt ikke fundet",
+      robots: {
+        index: false,
+        follow: false
+      }
+    };
+  }
+
+  const image = product.image.startsWith("https://") ? product.image : "/logo-small-round.png";
+  const description = `${product.name} hos Cecilies Smykker. ${product.description}`.slice(0, 155);
+
+  return {
+    title: `${product.name} | Cecilies Smykker`,
+    description,
+    alternates: {
+      canonical: `/product/${product.slug}`
+    },
+    openGraph: {
+      title: `${product.name} | Cecilies Smykker`,
+      description,
+      type: "website",
+      url: `/product/${product.slug}`,
+      images: [
+        {
+          url: image,
+          alt: product.name
+        }
+      ]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} | Cecilies Smykker`,
+      description,
+      images: [image]
+    }
+  };
+}
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

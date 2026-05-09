@@ -1,9 +1,19 @@
+import type { Metadata } from "next";
 import { ProductCard } from "@/components/product-card";
 import { lifeSavers, storyScript } from "@/lib/fonts";
 import { listProducts } from "@/lib/products";
 import { Search } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Shop smykker",
+  description:
+    "Shop alle smykker hos Cecilies Smykker. Find armbånd, halskæder og ringe i kuraterede kollektioner.",
+  alternates: {
+    canonical: "/shop"
+  }
+};
 
 const brandTitles: Record<string, string> = {
   cartier: "Cartier",

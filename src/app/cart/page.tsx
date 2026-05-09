@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import { CartView } from "@/components/cart-view";
 import { storyScript } from "@/lib/fonts";
+
+export const metadata: Metadata = {
+  title: "Din kurv",
+  robots: {
+    index: false,
+    follow: false
+  }
+};
 
 export default function CartPage() {
   return (

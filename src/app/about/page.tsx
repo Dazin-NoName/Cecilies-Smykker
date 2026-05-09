@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
 import { lifeSavers, storyScript } from "@/lib/fonts";
+
+export const metadata: Metadata = {
+  title: "Kontakt Cecilies Smykker",
+  description:
+    "Kontakt Cecilies Smykker på mail eller TikTok, hvis du har spørgsmål til smykker, levering eller ordrer.",
+  alternates: {
+    canonical: "/about"
+  }
+};
 
 export default function AboutPage() {
   return (
