@@ -63,6 +63,12 @@ textarea {
   letter-spacing: 0;
 }
 
+.seo-intro {
+  color: var(--muted);
+  font-size: clamp(0.98rem, 1.4vw, 1.08rem);
+  line-height: 1.75;
+}
+
 .brand-script {
   font-family: var(--font-story-script), "Story Script", cursive;
   font-weight: 400;

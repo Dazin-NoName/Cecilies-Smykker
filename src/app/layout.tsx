@@ -8,14 +8,17 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://cecilies-smykker.dk"),
   applicationName: "Cecilies Smykker",
   title: {
-    default: "Cecilies Smykker | Smykker, armbånd og halskæder online",
+    default: "Cecilies Smykker | Dansk smykkeshop online",
     template: "%s | Cecilies Smykker"
   },
   description:
-    "Cecilies Smykker er en dansk webshop med kuraterede smykker, armbånd, halskæder og ringe inspireret af populære designerklassikere. Shop online med hurtig checkout.",
+    "Cecilies Smykker er en dansk smykkeshop med kuraterede armbånd, halskæder, ringe og smykker online. Shop Cecilies Smykker med hurtig checkout.",
   keywords: [
     "Cecilies Smykker",
     "cecilies smykker",
+    "cecilies-smykker.dk",
+    "Cecilies Smykker webshop",
+    "Cecilies Smykker Danmark",
     "smykker",
     "dansk smykkeshop",
     "armbånd",
@@ -27,6 +30,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Cecilies Smykker" }],
   creator: "Cecilies Smykker",
   publisher: "Cecilies Smykker",
+  category: "Jewelry",
+  verification: {
+    google: "google45c89b68560a3d8e"
+  },
   alternates: {
     canonical: "/"
   },
@@ -46,9 +53,9 @@ export const metadata: Metadata = {
     apple: "/favicon-round.png?v=2"
   },
   openGraph: {
-    title: "Cecilies Smykker",
+    title: "Cecilies Smykker | Dansk smykkeshop online",
     description:
-      "Dansk webshop med kuraterede smykker, armbånd, halskæder og ringe. Shop Cecilies Smykker online.",
+      "Shop Cecilies Smykker online. Dansk smykkeshop med kuraterede armbånd, halskæder, ringe og smykker.",
     url: "https://cecilies-smykker.dk",
     siteName: "Cecilies Smykker",
     locale: "da_DK",
@@ -64,8 +71,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cecilies Smykker",
-    description: "Dansk webshop med kuraterede smykker, armbånd, halskæder og ringe.",
+    title: "Cecilies Smykker | Dansk smykkeshop online",
+    description: "Shop Cecilies Smykker online. Dansk smykkeshop med armbånd, halskæder og ringe.",
     images: ["/logo-small-round.png"]
   }
 };
@@ -77,16 +84,34 @@ const structuredData = {
       "@type": "Organization",
       "@id": "https://cecilies-smykker.dk/#organization",
       name: "Cecilies Smykker",
+      alternateName: ["cecilies smykker", "Cecilies Smykker webshop"],
       url: "https://cecilies-smykker.dk",
       logo: "https://cecilies-smykker.dk/logo-small-round.png",
+      image: "https://cecilies-smykker.dk/logo-small-round.png",
       email: "ceciliessmykker@gmail.com",
+      sameAs: ["https://www.tiktok.com/@cecilies.smykker06"]
+    },
+    {
+      "@type": "OnlineStore",
+      "@id": "https://cecilies-smykker.dk/#store",
+      name: "Cecilies Smykker",
+      alternateName: "cecilies smykker",
+      url: "https://cecilies-smykker.dk",
+      image: "https://cecilies-smykker.dk/logo-small-round.png",
+      logo: "https://cecilies-smykker.dk/logo-small-round.png",
+      email: "ceciliessmykker@gmail.com",
+      areaServed: "DK",
+      priceRange: "DKK",
+      parentOrganization: {
+        "@id": "https://cecilies-smykker.dk/#organization"
+      },
       sameAs: ["https://www.tiktok.com/@cecilies.smykker06"]
     },
     {
       "@type": "WebSite",
       "@id": "https://cecilies-smykker.dk/#website",
       name: "Cecilies Smykker",
-      alternateName: "cecilies smykker",
+      alternateName: ["cecilies smykker", "Cecilies Smykker webshop"],
       url: "https://cecilies-smykker.dk",
       publisher: {
         "@id": "https://cecilies-smykker.dk/#organization"

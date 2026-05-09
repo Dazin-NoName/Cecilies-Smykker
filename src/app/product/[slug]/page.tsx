@@ -65,9 +65,65 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     .filter((item) => item.slug !== product.slug)
     .slice(0, 3);
   const gallery = product.images.length > 0 ? product.images : [product.image];
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: gallery,
+    brand: {
+      "@type": "Brand",
+      name: "Cecilies Smykker"
+    },
+    category: product.collection,
+    material: product.metal,
+    offers: {
+      "@type": "Offer",
+      url: `https://cecilies-smykker.dk/product/${product.slug}`,
+      priceCurrency: product.currency,
+      price: (product.price / 100).toString(),
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+      seller: {
+        "@id": "https://cecilies-smykker.dk/#store"
+      }
+    }
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Cecilies Smykker",
+        item: "https://cecilies-smykker.dk"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Shop",
+        item: "https://cecilies-smykker.dk/shop"
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: product.name,
+        item: `https://cecilies-smykker.dk/product/${product.slug}`
+      }
+    ]
+  };
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <section className="section product-detail-section">
         <div className="container product-detail-layout grid gap-10 lg:grid-cols-[1fr_0.88fr]">
           <ProductCarousel images={gallery} name={product.name} />
