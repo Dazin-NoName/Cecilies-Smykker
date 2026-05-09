@@ -181,6 +181,9 @@ const seedProducts: ProductSeed[] = [
     detail: "Grønne malachite-inspirerede firkløver-detaljer",
     description:
       "Armbånd i sterling sølv med 18K gold plating og grønne malachite-inspirerede firkløver-detaljer. Den dybe grønne farve giver et markant, men stadig feminint look med klassisk Alhambra-inspireret form.",
+    images: [
+      "https://i.ibb.co/Zzvw4cXx/Van-cleef-5-motif-malachite1.png"
+    ],
     sortOrder: 80
   }),
   alhambraBracelet({
@@ -202,6 +205,10 @@ const seedProducts: ProductSeed[] = [
     detail: "Brune tiger eye-inspirerede firkløver-detaljer",
     description:
       "Armbånd i sterling sølv med 18K gold plating og brune tiger eye-inspirerede firkløver-detaljer. De varme gyldenbrune toner giver smykket et naturligt og sofistikeret udtryk.",
+    images: [
+      "https://i.ibb.co/0jy38qLw/Van-cleef-5-motif-tiger-eyes1.png",
+      "https://i.ibb.co/Y7BtMPb3/Van-cleef-5-motif-tiger-eyes2.png"
+    ],
     sortOrder: 100
   }),
   alhambraBracelet({
