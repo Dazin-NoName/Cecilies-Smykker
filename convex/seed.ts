@@ -168,6 +168,9 @@ const seedProducts: ProductSeed[] = [
     detail: "Røde carnelian-inspirerede firkløver-detaljer",
     description:
       "Armbånd i sterling sølv med 18K gold plating og røde carnelian-inspirerede firkløver-detaljer. Den varme røde tone giver smykket et levende og klassisk look, som fungerer godt både alene og i lag.",
+    images: [
+      "https://i.ibb.co/TM85hGfZ/Van-cleef-5-motif-carnelian1.png"
+    ],
     sortOrder: 60
   }),
   alhambraBracelet({
