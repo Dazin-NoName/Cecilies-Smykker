@@ -9,6 +9,10 @@ const brandPages = [
   { slug: "hermes", priority: 0.7 }
 ];
 
+function absoluteUrl(url: string) {
+  return url.startsWith("http") ? url : `${siteUrl}${url}`;
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await listProducts();
   const now = new Date();
@@ -43,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.8,
-      images: product.images.length > 0 ? product.images : [product.image]
+      images: (product.images.length > 0 ? product.images : [product.image]).map(absoluteUrl)
     }))
   ];
 }
