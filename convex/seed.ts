@@ -157,6 +157,9 @@ const seedProducts: ProductSeed[] = [
     detail: "Sorte onyx-inspirerede firkløver-detaljer",
     description:
       "Armbånd i sterling sølv med 18K gold plating og sorte onyx-inspirerede firkløver-detaljer. Det mørke motiv giver et rent, elegant udtryk, mens den enkle kæde gør smykket nemt at style alene eller sammen med andre armbånd.",
+    images: [
+      "https://i.ibb.co/FL0WjtMY/Van-cleef-5-motif-black-onyx1.png"
+    ],
     sortOrder: 50
   }),
   alhambraBracelet({
