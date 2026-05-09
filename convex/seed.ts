@@ -30,24 +30,28 @@ function alhambraBracelet({
   motif,
   detail,
   description,
+  images,
   sortOrder
 }: {
   slug: string;
   motif: string;
   detail: string;
   description: string;
+  images?: string[];
   sortOrder: number;
 }): ProductSeed {
+  const gallery = images ?? [placeholderImage];
+
   return {
     slug,
     name: `Alhambra ${motif} bracelet (5 motif)`,
     collection: "Van Cleef",
-    price: 105000,
+    price: 75000,
     currency: "dkk",
     metal: alhambraMaterial,
     gemstone: detail,
-    image: placeholderImage,
-    images: [placeholderImage],
+    image: gallery[0],
+    images: gallery,
     description,
     details: [alhambraMaterial, "19cm", detail],
     platingOptions,
@@ -185,6 +189,11 @@ const seedProducts: ProductSeed[] = [
     detail: "Lilla chalcedony-inspirerede firkløver-detaljer",
     description:
       "Armbånd i sterling sølv med 18K gold plating og lilla chalcedony-inspirerede firkløver-detaljer. Den bløde lilla tone giver et roligt og elegant udtryk, som passer godt til et feminint lag-på-lag look.",
+    images: [
+      "https://i.ibb.co/MJJtCpf/Van-cleef-5-motif-purple-chalcedony1.png",
+      "https://i.ibb.co/r2ML37hC/Van-cleef-5-motif-purple-chalcedony2.png",
+      "https://i.ibb.co/p6wZVbfr/Van-cleef-5-motif-purple-chalcedony3.png"
+    ],
     sortOrder: 90
   }),
   alhambraBracelet({
