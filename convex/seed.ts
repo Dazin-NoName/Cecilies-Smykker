@@ -217,6 +217,9 @@ const seedProducts: ProductSeed[] = [
     detail: "Hvide perlemor-inspirerede firkløver-detaljer",
     description:
       "Armbånd i sterling sølv med 18K gold plating og hvide perlemor-inspirerede firkløver-detaljer. Det lyse motiv giver et klassisk, blødt og tidløst look, som er nemt at kombinere med andre smykker.",
+    images: [
+      "https://i.ibb.co/v6WQRzp3/Van-cleef-5-motif-white-pearl-1.png"
+    ],
     sortOrder: 110
   })
 ];
