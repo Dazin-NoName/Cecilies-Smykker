@@ -134,9 +134,9 @@ const seedProducts: ProductSeed[] = [
   },
   {
     slug: "alhambra-blue-necklace-5-motif",
-    name: "Alhambra blue necklace (5 motif)",
+    name: "Alhambra blue agate bracelet (5 motif)",
     collection: "Van Cleef",
-    price: 105000,
+    price: 75000,
     currency: "dkk",
     metal: alhambraMaterial,
     gemstone: "Blå firkløver-detaljer",
