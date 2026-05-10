@@ -288,11 +288,13 @@ textarea {
   display: grid;
   gap: 0.55rem;
   max-width: 760px;
+  width: 100%;
 }
 
 .product-carousel-frame {
   aspect-ratio: 4 / 5;
   background: #ffebeb;
+  min-height: 320px;
 }
 
 .product-carousel-frame img {
@@ -669,10 +671,13 @@ textarea {
     gap: 0.5rem;
     margin-inline: auto;
     max-width: min(100%, 390px);
+    order: -1;
+    width: 100%;
   }
 
   .product-carousel-frame {
     aspect-ratio: 1 / 1.12;
+    min-height: 310px;
   }
 
   .product-detail-section {
@@ -681,6 +686,7 @@ textarea {
 
   .product-detail-layout {
     gap: 1.35rem;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .product-detail-info {
@@ -781,6 +787,10 @@ textarea {
 
   .product-carousel {
     max-width: 100%;
+  }
+
+  .product-carousel-frame {
+    min-height: 280px;
   }
 
   .carousel-thumbs {
