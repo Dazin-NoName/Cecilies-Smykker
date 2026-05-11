@@ -89,7 +89,7 @@ export function CartView() {
                     {line.name}
                   </Link>
                   {line.variant ? <p className="mt-1 text-sm text-[var(--muted)]">{line.variant}</p> : null}
-                  <p className="mt-2 text-sm font-semibold">{formatPrice(line.price)}</p>
+                  <p className={`${lifeSavers.className} mt-2 text-sm font-bold`}>{formatPrice(line.price)}</p>
                 </div>
                 <button aria-label="Fjern" onClick={() => removeLine(line.id)} className="cart-icon-button">
                   <Trash2 size={16} />
@@ -113,7 +113,7 @@ export function CartView() {
         <p className={`${lifeSavers.className} text-2xl text-[#ca9e4b]`}>Ordre</p>
         <div className="mt-5 flex items-center justify-between border-t border-[var(--line)] pt-5">
           <span>Subtotal</span>
-          <strong>{formatPrice(subtotal)}</strong>
+          <strong className={lifeSavers.className}>{formatPrice(subtotal)}</strong>
         </div>
         <button className="button primary mt-6 w-full justify-center" disabled={isCheckingOut} onClick={checkout}>
           {isCheckingOut ? "Starter checkout..." : "Gå til betaling"}

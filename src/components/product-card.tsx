@@ -24,7 +24,7 @@ export function ProductCard({ product }: { product: Product }) {
           <div>
             <p className={`${lifeSavers.className} text-lg font-bold leading-tight text-[#ca9e4b] md:text-base`}>{product.name}</p>
           </div>
-          <p className="shrink-0 text-sm font-semibold">{formatPrice(product.price)}</p>
+          <p className={`${lifeSavers.className} shrink-0 text-sm font-bold`}>{formatPrice(product.price)}</p>
         </div>
       </Link>
     </article>

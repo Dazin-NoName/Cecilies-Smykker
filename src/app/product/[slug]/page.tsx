@@ -4,7 +4,7 @@ import { ShieldCheck, Truck } from "lucide-react";
 import { BuyProduct } from "@/components/buy-product";
 import { ProductCarousel } from "@/components/product-carousel";
 import { ProductCard } from "@/components/product-card";
-import { storyScript } from "@/lib/fonts";
+import { lifeSavers, storyScript } from "@/lib/fonts";
 import { formatPrice, getProduct, listProducts } from "@/lib/products";
 
 export const dynamic = "force-dynamic";
@@ -131,7 +131,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <div className="product-detail-info lg:sticky lg:top-24 lg:h-fit">
             <p className="eyebrow">{product.collection}</p>
             <h1 className={`${storyScript.className} product-detail-title mt-3 text-5xl leading-tight text-[#ca9e4b] sm:text-5xl lg:text-6xl`}>{product.name}</h1>
-            <p className="mt-4 text-xl font-semibold sm:text-2xl">{formatPrice(product.price)}</p>
+            <p className={`${lifeSavers.className} mt-4 text-xl font-bold sm:text-2xl`}>{formatPrice(product.price)}</p>
             <p className="mt-6 max-w-xl leading-7 text-[var(--muted)]">{product.description}</p>
 
             <div className="mt-8 grid gap-3 border-y border-[var(--line)] py-5 text-sm">
