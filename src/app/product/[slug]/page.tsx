@@ -65,7 +65,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     .filter((item) => item.slug !== product.slug)
     .slice(0, 3);
   const gallery = product.images.length > 0 ? product.images : [product.image];
-  const specLines = [product.metal, product.gemstone, ...product.details].filter((line) => line.trim().length > 0);
+  const specLines = Array.from(
+    new Set([product.metal, product.gemstone, ...product.details].map((line) => line.trim()).filter(Boolean))
+  );
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",

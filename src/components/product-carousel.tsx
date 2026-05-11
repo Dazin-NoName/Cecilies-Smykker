@@ -19,7 +19,15 @@ export function ProductCarousel({ images, name }: { images: string[]; name: stri
   return (
     <div className="product-carousel">
       <div className="product-carousel-frame product-image-frame relative bg-[#ffebeb]">
-        <Image src={current} alt={`${name} billede ${index + 1}`} fill priority sizes="(max-width: 1024px) 100vw, 52vw" className="object-cover" />
+        <Image
+          src={current}
+          alt={`${name} billede ${index + 1}`}
+          fill
+          priority
+          unoptimized
+          sizes="(max-width: 1024px) 100vw, 52vw"
+          className="object-cover"
+        />
         {images.length > 1 ? (
           <>
             <button type="button" className="carousel-button carousel-button-left" aria-label="Forrige billede" onClick={previous}>
@@ -42,7 +50,7 @@ export function ProductCarousel({ images, name }: { images: string[]; name: stri
               aria-label={`Vis billede ${imageIndex + 1}`}
               onClick={() => setIndex(imageIndex)}
             >
-              <Image src={image} alt="" fill sizes="74px" className="object-cover" />
+              <Image src={image} alt="" fill unoptimized sizes="74px" className="object-cover" />
             </button>
           ))}
         </div>

@@ -12,11 +12,13 @@ function formatVariant(plating: string, length: string) {
 }
 
 export function BuyProduct({ product }: { product: Product }) {
+  const lengthOptions = product.lengthOptions ?? [];
   const [plating, setPlating] = useState(product.platingOptions?.[0] ?? "");
-  const [length, setLength] = useState(product.lengthOptions?.[0] ?? "");
+  const [length, setLength] = useState(lengthOptions[0] ?? "");
   const [added, setAdded] = useState(false);
   const [isBuying, setIsBuying] = useState(false);
   const variant = formatVariant(plating, length);
+  const showLengthPicker = lengthOptions.length > 1;
 
   function addToCart() {
     addProductToCart(product, variant);
@@ -74,7 +76,7 @@ export function BuyProduct({ product }: { product: Product }) {
         </fieldset>
       ) : null}
 
-      {product.lengthOptions && product.lengthOptions.length > 0 ? (
+      {showLengthPicker ? (
         <details className="length-picker">
           <summary className={`${lifeSavers.className} length-picker-summary`}>
             <span>Vælg længde</span>
@@ -85,7 +87,7 @@ export function BuyProduct({ product }: { product: Product }) {
           </summary>
           <fieldset className="length-options pt-3">
             <legend className="sr-only">Vælg længde</legend>
-            {product.lengthOptions.map((option) => (
+            {lengthOptions.map((option) => (
               <label key={option} className="variant-option compact">
                 <input
                   type="radio"
