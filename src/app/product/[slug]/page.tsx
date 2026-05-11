@@ -65,6 +65,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     .filter((item) => item.slug !== product.slug)
     .slice(0, 3);
   const gallery = product.images.length > 0 ? product.images : [product.image];
+  const specLines = [product.metal, product.gemstone, ...product.details].filter((line) => line.trim().length > 0);
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -135,9 +136,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <p className="mt-6 max-w-xl leading-7 text-[var(--muted)]">{product.description}</p>
 
             <div className="mt-8 grid gap-3 border-y border-[var(--line)] py-5 text-sm">
-              <p>{product.metal}</p>
-              <p>{product.gemstone}</p>
-              {product.details.map((detail) => (
+              {specLines.map((detail) => (
                 <p key={detail}>{detail}</p>
               ))}
             </div>
