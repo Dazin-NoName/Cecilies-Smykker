@@ -27,11 +27,6 @@ export function SiteHeader() {
         <div className="container header-main-row">
           <nav className={`${lifeSavers.className} hidden text-sm font-normal tracking-0 lg:block`}>
             <div className="header-contact-stack">
-              {utilityItems.map((item) => (
-                <Link key={item.label} href={item.href} className="nav-underline transition">
-                  {item.label}
-                </Link>
-              ))}
               <Link href="/" aria-label="Cecilies Smykker forside" className="mini-header-logo">
                 <Image
                   src="/logo-small-round.png"
@@ -71,11 +66,6 @@ export function SiteHeader() {
           </nav>
 
           <div className={`${lifeSavers.className} mobile-product-nav`}>
-            {utilityItems.map((item) => (
-              <Link key={`mobile-${item.label}`} href={item.href} className="mobile-nav-contact nav-underline whitespace-nowrap transition">
-                {item.label}
-              </Link>
-            ))}
             <button
               type="button"
               className="mobile-product-toggle"
@@ -102,6 +92,11 @@ export function SiteHeader() {
           >
             <ShoppingBag size={22} strokeWidth={1.45} />
           </Link>
+          {utilityItems.map((item) => (
+            <Link key={item.label} href={item.href} className={`${lifeSavers.className} header-contact-link nav-underline whitespace-nowrap transition`}>
+              {item.label}
+            </Link>
+          ))}
         </div>
         <nav
           id="mobile-product-links"
