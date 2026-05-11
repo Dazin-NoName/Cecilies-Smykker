@@ -5,6 +5,7 @@ const braceletLengths = ["16cm", "17cm", "18cm", "19cm", "20cm", "21cm"];
 const platedTitanium = "Titanium med gold, rose gold eller white gold plating (18K)";
 const alhambraMaterial = "Solid sølv og 18K guld plating";
 const placeholderImage = "/logo-small-round.png";
+const removedProductSlugs = ["cartier-c-de-cartier-necklace-18k"];
 
 type ProductSeed = {
   slug: string;
@@ -63,28 +64,6 @@ function alhambraBracelet({
 }
 
 const seedProducts: ProductSeed[] = [
-  {
-    slug: "cartier-c-de-cartier-necklace-18k",
-    name: "Cartier C de Cartier Necklace 18K",
-    collection: "Cartier",
-    price: 98000,
-    currency: "dkk",
-    metal: "Titanium med 18K gold plating",
-    gemstone: "Pearl",
-    image: "https://i.ibb.co/r2S28fXj/Vintage-pearl-necklace-cartier-3.png",
-    images: [
-      "https://i.ibb.co/r2S28fXj/Vintage-pearl-necklace-cartier-3.png",
-      "https://i.ibb.co/gLTm0n7w/Vintage-pearl-necklace-cartier-2.png",
-      "https://i.ibb.co/pjvm68fL/Vintage-pearl-necklace-cartier-1.png"
-    ],
-    description:
-      "Guldfarvet halskæde med et enkelt perlevedhæng. Halskæden er lavet i titanium med 18K gold plating, som giver et let og holdbart smykke med en varm guldfinish. Det simple design gør den nem at bruge både til hverdag og mere pyntede outfits. Fås i rose gold, gold og white gold.",
-    details: ["Perlevedhæng", "Let og holdbart design", "Kan vælges i rose gold, gold eller white gold plating"],
-    platingOptions,
-    active: true,
-    featured: true,
-    sortOrder: 10
-  },
   {
     slug: "cartier-love-bracelet-full-metal",
     name: "Cartier love bracelet (full metal)",
@@ -254,6 +233,17 @@ export const run = mutation({
           createdAt: now,
           updatedAt: now
         });
+      }
+    }
+
+    for (const slug of removedProductSlugs) {
+      const existing = await ctx.db
+        .query("products")
+        .withIndex("by_slug", (q) => q.eq("slug", slug))
+        .first();
+
+      if (existing) {
+        await ctx.db.delete(existing._id);
       }
     }
 
