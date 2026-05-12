@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   creator: "Cecilies Smykker",
   publisher: "Cecilies Smykker",
   category: "Jewelry",
+  manifest: "/manifest.webmanifest",
   verification: {
     google: "google45c89b68560a3d8e"
   },
@@ -50,12 +51,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
       { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
       { url: "/icon-96.png", sizes: "96x96", type: "image/png" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" }
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" }
     ],
-    shortcut: "/favicon.ico",
+    shortcut: "/icon-48.png",
     apple: "/icon-192.png"
   },
   openGraph: {
@@ -92,7 +93,7 @@ const structuredData = {
       name: "Cecilies Smykker",
       alternateName: ["cecilies smykker", "Cecilies Smykker webshop"],
       url: "https://cecilies-smykker.dk",
-      logo: "https://cecilies-smykker.dk/logo-small-round.png",
+      logo: "https://cecilies-smykker.dk/icon-512.png",
       image: "https://cecilies-smykker.dk/logo-small-round.png",
       email: "ceciliessmykker@gmail.com",
       sameAs: ["https://www.tiktok.com/@cecilies.smykker06"]
@@ -104,7 +105,7 @@ const structuredData = {
       alternateName: "cecilies smykker",
       url: "https://cecilies-smykker.dk",
       image: "https://cecilies-smykker.dk/logo-small-round.png",
-      logo: "https://cecilies-smykker.dk/logo-small-round.png",
+      logo: "https://cecilies-smykker.dk/icon-512.png",
       email: "ceciliessmykker@gmail.com",
       areaServed: "DK",
       priceRange: "DKK",
