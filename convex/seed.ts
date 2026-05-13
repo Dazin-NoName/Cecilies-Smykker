@@ -68,7 +68,7 @@ const seedProducts: ProductSeed[] = [
     slug: "cartier-love-bracelet-full-metal",
     name: "Cartier love bracelet (full metal)",
     collection: "Cartier",
-    price: 73000,
+    price: 72000,
     currency: "dkk",
     metal: platedTitanium,
     gemstone: "No stone",
