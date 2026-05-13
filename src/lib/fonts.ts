@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Life_Savers, Story_Script } from "next/font/google";
+import { Cormorant_Garamond, Geist, Geist_Mono, Life_Savers } from "next/font/google";
 
 export const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,10 +10,11 @@ export const geistMono = Geist_Mono({
   subsets: ["latin"]
 });
 
-export const storyScript = Story_Script({
+export const storyScript = Cormorant_Garamond({
   variable: "--font-story-script",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["500", "600", "700"],
+  style: "italic",
   adjustFontFallback: false
 });
 

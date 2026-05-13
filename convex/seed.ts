@@ -97,9 +97,8 @@ const seedProducts: ProductSeed[] = [
     currency: "dkk",
     metal: platedTitanium,
     gemstone: "No stone",
-    image: "https://i.ibb.co/RKNGZQp/Cartier-love-ring-full-metal1.png",
+    image: "https://i.ibb.co/KxtpPMC1/Cartier-love-ring-full-metal2.png",
     images: [
-      "https://i.ibb.co/RKNGZQp/Cartier-love-ring-full-metal1.png",
       "https://i.ibb.co/KxtpPMC1/Cartier-love-ring-full-metal2.png",
       "https://i.ibb.co/YB0JqtK6/Cartier-love-ring-full-metal3.png",
       "https://i.ibb.co/84fbf2Hv/Cartier-love-ring-full-metal4.png"

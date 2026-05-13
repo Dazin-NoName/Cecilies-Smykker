@@ -16,7 +16,7 @@
 @theme inline {
   --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
-  --font-story: "Story Script", cursive;
+  --font-story: "Cormorant Garamond", serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 }
@@ -70,13 +70,16 @@ textarea {
 }
 
 .brand-script {
-  font-family: var(--font-story-script), "Story Script", cursive;
-  font-weight: 400;
+  font-family: var(--font-story-script), "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 600;
   letter-spacing: 0;
 }
 
 .site-logo {
   color: #ca9e4b !important;
+  font-style: italic;
+  font-weight: 600;
 }
 
 .site-header-shell {
