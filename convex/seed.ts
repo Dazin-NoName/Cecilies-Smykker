@@ -119,8 +119,12 @@ const seedProducts: ProductSeed[] = [
     currency: "dkk",
     metal: alhambraMaterial,
     gemstone: "",
-    image: placeholderImage,
-    images: [placeholderImage],
+    image: "https://i.ibb.co/SDgPz6v3/Van-Cleef-5-motif-blue-agate1.png",
+    images: [
+      "https://i.ibb.co/SDgPz6v3/Van-Cleef-5-motif-blue-agate1.png",
+      "https://i.ibb.co/h14KCpvF/Van-cleef-5-motif-blue-agate2.png",
+      "https://i.ibb.co/C5jrsqKX/Van-cleef-5-motif-blue-agate3.jpg"
+    ],
     description:
       "Armbånd i sterling sølv med 18K gold plating og blå firkløver-detaljer. Designet har en enkel kæde med små dekorative led, som giver et feminint og klassisk look. Et let smykke, der kan bruges alene eller sammen med andre armbånd.",
     details: [alhambraMaterial, "19cm"],
