@@ -1,136 +1,22 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import { geistMono, geistSans, lifeSavers, storyScript } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cecilies-smykker.dk"),
   applicationName: "Cecilies Smykker",
-  title: {
-    default: "Cecilies Smykker | Dansk smykkeshop online",
-    template: "%s | Cecilies Smykker"
-  },
-  description:
-    "Cecilies Smykker er en dansk smykkeshop med kuraterede armbånd, halskæder, ringe og smykker online. Shop Cecilies Smykker med hurtig checkout.",
-  keywords: [
-    "Cecilies Smykker",
-    "cecilies smykker",
-    "cecilies-smykker.dk",
-    "Cecilies Smykker webshop",
-    "Cecilies Smykker Danmark",
-    "smykker",
-    "dansk smykkeshop",
-    "armbånd",
-    "halskæder",
-    "ringe",
-    "Van Cleef smykker",
-    "Cartier smykker"
-  ],
-  authors: [{ name: "Cecilies Smykker" }],
-  creator: "Cecilies Smykker",
-  publisher: "Cecilies Smykker",
-  category: "Jewelry",
-  manifest: "/manifest.webmanifest",
-  verification: {
-    google: "google45c89b68560a3d8e"
-  },
-  alternates: {
-    canonical: "/"
-  },
+  title: "Site offline",
+  description: "This site has been taken down.",
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
     googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1
+      index: false,
+      follow: false,
+      noimageindex: true
     }
-  },
-  icons: {
-    icon: [
-      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
-      { url: "/icon-96.png", sizes: "96x96", type: "image/png" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/favicon.ico", sizes: "any" }
-    ],
-    shortcut: "/icon-48.png",
-    apple: "/icon-192.png"
-  },
-  openGraph: {
-    title: "Cecilies Smykker | Dansk smykkeshop online",
-    description:
-      "Shop Cecilies Smykker online. Dansk smykkeshop med kuraterede armbånd, halskæder, ringe og smykker.",
-    url: "https://cecilies-smykker.dk",
-    siteName: "Cecilies Smykker",
-    locale: "da_DK",
-    type: "website",
-    images: [
-      {
-        url: "/logo-small-round.png",
-        width: 512,
-        height: 512,
-        alt: "Cecilies Smykker logo"
-      }
-    ]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Cecilies Smykker | Dansk smykkeshop online",
-    description: "Shop Cecilies Smykker online. Dansk smykkeshop med armbånd, halskæder og ringe.",
-    images: ["/logo-small-round.png"]
   }
-};
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://cecilies-smykker.dk/#organization",
-      name: "Cecilies Smykker",
-      alternateName: ["cecilies smykker", "Cecilies Smykker webshop"],
-      url: "https://cecilies-smykker.dk",
-      logo: "https://cecilies-smykker.dk/icon-512.png",
-      image: "https://cecilies-smykker.dk/logo-small-round.png",
-      email: "ceciliessmykker@gmail.com",
-      sameAs: ["https://www.tiktok.com/@cecilies.smykker06"]
-    },
-    {
-      "@type": "OnlineStore",
-      "@id": "https://cecilies-smykker.dk/#store",
-      name: "Cecilies Smykker",
-      alternateName: "cecilies smykker",
-      url: "https://cecilies-smykker.dk",
-      image: "https://cecilies-smykker.dk/logo-small-round.png",
-      logo: "https://cecilies-smykker.dk/icon-512.png",
-      email: "ceciliessmykker@gmail.com",
-      areaServed: "DK",
-      priceRange: "DKK",
-      parentOrganization: {
-        "@id": "https://cecilies-smykker.dk/#organization"
-      },
-      sameAs: ["https://www.tiktok.com/@cecilies.smykker06"]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://cecilies-smykker.dk/#website",
-      name: "Cecilies Smykker",
-      alternateName: ["cecilies smykker", "Cecilies Smykker webshop"],
-      url: "https://cecilies-smykker.dk",
-      publisher: {
-        "@id": "https://cecilies-smykker.dk/#organization"
-      },
-      inLanguage: "da-DK",
-      potentialAction: {
-        "@type": "SearchAction",
-        target: "https://cecilies-smykker.dk/shop?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-  ]
 };
 
 export default function RootLayout({
@@ -146,13 +32,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body suppressHydrationWarning>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-        <SiteHeader />
         {children}
-        <SiteFooter />
         <Analytics />
       </body>
     </html>
