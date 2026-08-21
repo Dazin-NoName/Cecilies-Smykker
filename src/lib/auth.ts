@@ -9,7 +9,7 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   pages: {
-    signIn: "/AdminCool06Cecilie"
+    signIn: "/Admin1989Sko"
   },
   callbacks: {
     session({ session }) {

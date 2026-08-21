@@ -4,68 +4,45 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, Search, ShoppingBag } from "lucide-react";
 import { useState } from "react";
-import { lifeSavers, storyScript } from "@/lib/fonts";
 
-const utilityItems = [
-  { href: "/about", label: "Kontakt os" }
-];
+const utilityItems = [{ href: "/about", label: "Kontakt" }];
 
-const brandItems = [
-  { href: "/shop", label: "Alle smykker" },
-  { href: "/shop?brand=cartier", label: "Cartier" },
-  { href: "/shop?brand=van-cleef", label: "Van Cleef" },
-  { href: "/shop?brand=louis-vuitton", label: "Louis Vuitton" },
-  { href: "/shop?brand=hermes", label: "Hermes" }
+const categoryItems = [
+  { href: "/shop", label: "Alle GATs" },
+  { href: "/shop?collection=Classic%20GAT", label: "Classic GAT" },
+  { href: "/shop?collection=Black%20Edition", label: "Black Edition" },
+  { href: "/shop?collection=Paint%20Drop", label: "Paint Drop" },
+  { href: "/shop?collection=Suede%20Edit", label: "Suede Edit" }
 ];
 
 export function SiteHeader() {
   const [productsOpen, setProductsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-[var(--line)] bg-[#ffebeb]">
-      <div className="site-header-shell bg-[#ffebeb]">
+    <header className="sticky top-0 z-30 border-b border-[var(--line)] bg-[var(--background)]">
+      <div className="site-header-shell">
         <div className="container header-main-row">
-          <nav className={`${lifeSavers.className} hidden text-sm font-normal tracking-0 lg:block`}>
-            <div className="header-contact-stack">
-              <Link href="/" aria-label="Cecilies Smykker forside" className="mini-header-logo">
-                <Image
-                  src="/logo-small-round.png"
-                  alt="Cecilies Smykker"
-                  width={128}
-                  height={128}
-                  priority
-                />
-              </Link>
-            </div>
-          </nav>
-
-          <Link href="/" aria-label="Cecilies Smykker forside" className="mobile-header-logo">
-            <Image
-              src="/logo-small-round.png"
-              alt="Cecilies Smykker"
-              width={128}
-              height={128}
-              priority
-            />
+          <Link href="/" aria-label="1989 SKO forside" className="mini-header-logo">
+            <Image src="/logo-1989-sko.png" alt="1989 SKO" width={128} height={128} priority />
           </Link>
 
-          <Link href="/" className={`${storyScript.className} site-logo header-brand text-center leading-none`}>
-            Cecilies Smykker
+          <Link href="/" className="site-logo header-brand text-center leading-none">
+            1989 SKO
           </Link>
 
           <div aria-hidden="true" />
         </div>
 
         <div className="container header-nav-row">
-          <nav className={`${lifeSavers.className} desktop-brand-nav brand-scroll-nav`}>
-            {brandItems.map((item) => (
+          <nav className="desktop-brand-nav brand-scroll-nav">
+            {categoryItems.map((item) => (
               <Link key={item.label} href={item.href} className="nav-underline whitespace-nowrap transition">
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className={`${lifeSavers.className} mobile-product-nav`}>
+          <div className="mobile-product-nav">
             <button
               type="button"
               className="mobile-product-toggle"
@@ -73,36 +50,25 @@ export function SiteHeader() {
               aria-controls="mobile-product-links"
               onClick={() => setProductsOpen((open) => !open)}
             >
-              Produkter
+              GATs
               <ChevronDown className={productsOpen ? "rotate-180" : ""} size={16} strokeWidth={1.5} />
             </button>
           </div>
 
-          <Link
-            href="/shop#search"
-            aria-label="Søg"
-            className="search-link shrink-0 border-l border-[#ce9494] transition"
-          >
-            <Search size={25} strokeWidth={1.45} />
+          <Link href="/shop#search" aria-label="Søg" className="search-link shrink-0 transition">
+            <Search size={24} strokeWidth={1.55} />
           </Link>
-          <Link
-            href="/cart"
-            aria-label="Kurv"
-            className="cart-link shrink-0 transition"
-          >
-            <ShoppingBag size={22} strokeWidth={1.45} />
+          <Link href="/cart" aria-label="Kurv" className="cart-link shrink-0 transition">
+            <ShoppingBag size={22} strokeWidth={1.55} />
           </Link>
           {utilityItems.map((item) => (
-            <Link key={item.label} href={item.href} className={`${lifeSavers.className} header-contact-link nav-underline whitespace-nowrap transition`}>
+            <Link key={item.label} href={item.href} className="header-contact-link nav-underline whitespace-nowrap transition">
               {item.label}
             </Link>
           ))}
         </div>
-        <nav
-          id="mobile-product-links"
-          className={`${lifeSavers.className} mobile-product-panel ${productsOpen ? "is-open" : ""}`}
-        >
-          {brandItems.map((item) => (
+        <nav id="mobile-product-links" className={`mobile-product-panel ${productsOpen ? "is-open" : ""}`}>
+          {categoryItems.map((item) => (
             <Link key={`mobile-panel-${item.label}`} href={item.href} onClick={() => setProductsOpen(false)}>
               {item.label}
             </Link>

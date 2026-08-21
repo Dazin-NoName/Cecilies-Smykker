@@ -1,16 +1,16 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Search, ShoppingBag } from "lucide-react";
 import { ProductCard } from "@/components/product-card";
-import { lifeSavers, storyScript } from "@/lib/fonts";
 import { listProducts } from "@/lib/products";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Cecilies Smykker | Dansk smykkeshop online",
+  title: "1989 SKO | Maison Margiela GATs i Danmark",
   description:
-    "Shop Cecilies Smykker online. Dansk smykkeshop med kuraterede armbånd, halskæder, ringe og populære smykkestyles.",
+    "Shop prototypeprodukter til Maison Margiela GATs hos 1989 SKO. Dansk UI med søgning, kurv, størrelser og checkout.",
   alternates: {
     canonical: "/"
   }
@@ -21,11 +21,11 @@ export default async function Home() {
   const itemListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Cecilies Smykker produkter",
+    name: "1989 SKO GAT produkter",
     itemListElement: featured.map((product, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: `https://cecilies-smykker.dk/product/${product.slug}`,
+      url: `https://1989sko.dk/product/${product.slug}`,
       name: product.name
     }))
   };
@@ -36,23 +36,45 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
-      <section className="section">
+      <section className="section home-shop-section">
         <div className="container">
-          <h1 className="sr-only">Cecilies Smykker dansk smykkeshop</h1>
-          <div className="mb-8 flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="eyebrow">Shop</p>
-              <h2 className={`${storyScript.className} mt-2 text-5xl leading-tight text-[#ca9e4b] md:text-6xl`}>Alle smykker</h2>
-              <p className="seo-intro mt-3 max-w-2xl">
-                Cecilies Smykker er en dansk smykkeshop med kuraterede armbånd, halskæder og ringe til hurtig online bestilling.
-              </p>
+          <div className="home-shop-intro">
+            <div className="home-logo-lockup">
+              <Image src="/logo-1989-sko.png" alt="1989 SKO" width={180} height={180} priority />
             </div>
-            <Link href="/shop" className={`${lifeSavers.className} button shop-all-button inline-flex md:w-auto`}>
+            <div>
+              <p className="eyebrow">Maison Margiela GATs</p>
+              <h1 className="mt-3 max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
+                Dansk GAT-shop med kurv, checkout og prototypeprodukter.
+              </h1>
+              <p className="seo-intro mt-4 max-w-2xl">
+                1989 SKO er sat op som en fokuseret sneakerbutik kun til Maison Margiela GATs.
+                Produkterne bruger midlertidige placeholders, så shoppen kan testes uden produktfotos.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link href="/shop" className="button primary">
+                  <ShoppingBag size={17} />
+                  Shop alle GATs
+                </Link>
+                <Link href="/shop#search" className="button secondary">
+                  <Search size={17} />
+                  Søg model
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="eyebrow">Udvalgte modeller</p>
+              <h2 className="mt-2 text-3xl font-semibold md:text-4xl">Prototype GATs</h2>
+            </div>
+            <Link href="/shop" className="button shop-all-button inline-flex md:w-auto">
               Alle produkter
               <ArrowRight size={17} />
             </Link>
           </div>
-          <div className="product-grid">
+          <div className="product-grid mt-6">
             {featured.map((product) => (
               <ProductCard key={product.slug} product={product} />
             ))}

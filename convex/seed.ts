@@ -1,11 +1,7 @@
 import { mutation } from "./_generated/server";
 
-const platingOptions = ["Gold 18K plating", "Rose gold 18K plating", "White gold 18K plating"];
-const braceletLengths = ["16cm", "17cm", "18cm", "19cm", "20cm", "21cm"];
-const platedTitanium = "Titanium med gold, rose gold eller white gold plating (18K)";
-const alhambraMaterial = "Solid sølv og 18K guld plating";
-const placeholderImage = "/logo-small-round.png";
-const removedProductSlugs = ["cartier-c-de-cartier-necklace-18k"];
+const sizes = ["EU 39", "EU 40", "EU 41", "EU 42", "EU 43", "EU 44", "EU 45"];
+const conditions = ["Ny / DS", "Prøvet indendørs", "Let brugt"];
 
 type ProductSeed = {
   slug: string;
@@ -26,193 +22,116 @@ type ProductSeed = {
   sortOrder: number;
 };
 
-function alhambraBracelet({
-  slug,
-  motif,
-  detail,
-  description,
-  images,
-  sortOrder
-}: {
-  slug: string;
-  motif: string;
-  detail: string;
-  description: string;
-  images?: string[];
-  sortOrder: number;
-}): ProductSeed {
-  const gallery = images ?? [placeholderImage];
-
-  return {
-    slug,
-    name: `Alhambra ${motif} bracelet (5 motif)`,
-    collection: "Van Cleef",
-    price: 78000,
-    currency: "dkk",
-    metal: alhambraMaterial,
-    gemstone: "",
-    image: gallery[0],
-    images: gallery,
-    description,
-    details: [alhambraMaterial, "19cm"],
-    platingOptions,
-    lengthOptions: ["19cm"],
-    active: true,
-    featured: true,
-    sortOrder
-  };
-}
-
 const seedProducts: ProductSeed[] = [
   {
-    slug: "cartier-love-bracelet-full-metal",
-    name: "Cartier love bracelet (full metal)",
-    collection: "Cartier",
-    price: 72000,
+    slug: "maison-margiela-gat-classic-white",
+    name: "Maison Margiela GAT Classic White",
+    collection: "Classic GAT",
+    price: 429900,
     currency: "dkk",
-    metal: platedTitanium,
-    gemstone: "No stone",
-    image: "https://i.ibb.co/KcxFh2Gc/Cartier-love-bracelet-no-stone1.png",
-    images: [
-      "https://i.ibb.co/KcxFh2Gc/Cartier-love-bracelet-no-stone1.png",
-      "https://i.ibb.co/VWNKxB3w/Cartier-love-bracelet-no-stone4.png",
-      "https://i.ibb.co/LD6NPJLd/Cartier-love-bracelet-no-stone3.png",
-      "https://i.ibb.co/XxS6zgb6/Cartier-love-bracelet-no-stone2.png",
-      "https://i.ibb.co/y9yNTqS/Cartier-love-bracelet-no-stone5.png"
-    ],
+    metal: "Kalveskind, ruskindspaneler og gum sole",
+    gemstone: "Hvid / grå / naturgummi",
+    image: "",
+    images: [],
     description:
-      "Armbånd i titanium med et enkelt skrue-design og en ren, klassisk finish. Dette er no stone versionen, så udtrykket er mere minimalistisk og nemt at style til hverdag. Fås med 18K plating i rose gold, gold og white gold.",
-    details: [platedTitanium, "No stone version", "Klassisk skrue-design"],
-    platingOptions,
-    lengthOptions: braceletLengths,
+      "Den klassiske Replica-inspirerede GAT med hvid læderoverdel, grå ruskindsdetaljer og den varme gummisål.",
+    details: ["Prototypeprodukt uden produktfoto", "Lav silhuet med snørelukning", "Polstret krave og læderforing"],
+    platingOptions: sizes,
+    lengthOptions: conditions,
+    active: true,
+    featured: true,
+    sortOrder: 10
+  },
+  {
+    slug: "maison-margiela-gat-black-leather",
+    name: "Maison Margiela GAT Black Leather",
+    collection: "Black Edition",
+    price: 459900,
+    currency: "dkk",
+    metal: "Sort kalveskind, ruskind og gum sole",
+    gemstone: "Sort / sort / mørk gum",
+    image: "",
+    images: [],
+    description: "En mørkere GAT-variant med sort læder og diskrete ruskindspaneler.",
+    details: ["Prototypeprodukt uden produktfoto", "Tonal sort overdel", "Kontrast i materialestruktur"],
+    platingOptions: sizes,
+    lengthOptions: conditions,
     active: true,
     featured: true,
     sortOrder: 20
   },
   {
-    slug: "cartier-love-ring-full-metal",
-    name: "Cartier love ring (full metal)",
-    collection: "Cartier",
-    price: 68000,
+    slug: "maison-margiela-gat-painted-white",
+    name: "Maison Margiela GAT Paint Drop White",
+    collection: "Paint Drop",
+    price: 519900,
     currency: "dkk",
-    metal: platedTitanium,
-    gemstone: "No stone",
-    image: "https://i.ibb.co/Cph1g2r3/Cartier-love-ring-full-metal1.png",
-    images: [
-      "https://i.ibb.co/Cph1g2r3/Cartier-love-ring-full-metal1.png",
-      "https://i.ibb.co/KxtpPMC1/Cartier-love-ring-full-metal2.png",
-      "https://i.ibb.co/YB0JqtK6/Cartier-love-ring-full-metal3.png",
-      "https://i.ibb.co/84fbf2Hv/Cartier-love-ring-full-metal4.png"
-    ],
-    description: "Description kommer snart.",
-    details: [platedTitanium, "No stone version", "Klassisk love ring design"],
-    platingOptions,
+    metal: "Læder, ruskind og håndmalet effekt",
+    gemstone: "Hvid med paint-drop detaljer",
+    image: "",
+    images: [],
+    description: "En statement GAT med paint-drop effekt og rå atelier-fornemmelse.",
+    details: ["Prototypeprodukt uden produktfoto", "Paint-drop inspireret finish", "Hver sko kan variere let"],
+    platingOptions: sizes,
+    lengthOptions: conditions,
     active: true,
     featured: true,
     sortOrder: 30
   },
   {
-    slug: "alhambra-blue-necklace-5-motif",
-    name: "Alhambra blue agate bracelet (5 motif)",
-    collection: "Van Cleef",
-    price: 78000,
+    slug: "maison-margiela-gat-grey-suede",
+    name: "Maison Margiela GAT Grey Suede",
+    collection: "Suede Edit",
+    price: 389900,
     currency: "dkk",
-    metal: alhambraMaterial,
-    gemstone: "",
-    image: "https://i.ibb.co/SDgPz6v3/Van-Cleef-5-motif-blue-agate1.png",
-    images: [
-      "https://i.ibb.co/SDgPz6v3/Van-Cleef-5-motif-blue-agate1.png",
-      "https://i.ibb.co/h14KCpvF/Van-cleef-5-motif-blue-agate2.png",
-      "https://i.ibb.co/C5jrsqKX/Van-cleef-5-motif-blue-agate3.jpg"
-    ],
-    description:
-      "Armbånd i sterling sølv med 18K gold plating og blå firkløver-detaljer. Designet har en enkel kæde med små dekorative led, som giver et feminint og klassisk look. Et let smykke, der kan bruges alene eller sammen med andre armbånd.",
-    details: [alhambraMaterial, "19cm"],
-    platingOptions,
-    lengthOptions: ["19cm"],
+    metal: "Ruskind, læderdetaljer og gum sole",
+    gemstone: "Grå / off-white / naturgummi",
+    image: "",
+    images: [],
+    description: "Blød grå GAT med ruskind som hovedmateriale og en rolig farvepalet.",
+    details: ["Prototypeprodukt uden produktfoto", "Grå ruskindsoverdel", "Off-white kontrastpaneler"],
+    platingOptions: sizes,
+    lengthOptions: conditions,
     active: true,
     featured: true,
     sortOrder: 40
   },
-  alhambraBracelet({
-    slug: "alhambra-black-onyx-bracelet-5-motif",
-    motif: "black onyx",
-    detail: "Sorte onyx-inspirerede firkløver-detaljer",
-    description:
-      "Armbånd i sterling sølv med 18K gold plating og sorte onyx-inspirerede firkløver-detaljer. Det mørke motiv giver et rent, elegant udtryk, mens den enkle kæde gør smykket nemt at style alene eller sammen med andre armbånd.",
-    images: [
-      "https://i.ibb.co/FL0WjtMY/Van-cleef-5-motif-black-onyx1.png"
-    ],
+  {
+    slug: "maison-margiela-gat-triple-white",
+    name: "Maison Margiela GAT Triple White",
+    collection: "Classic GAT",
+    price: 409900,
+    currency: "dkk",
+    metal: "Hvidt læder, ruskind og lys gummisål",
+    gemstone: "Triple white",
+    image: "",
+    images: [],
+    description: "En lys og minimal GAT til et rent outfit.",
+    details: ["Prototypeprodukt uden produktfoto", "Hvid på hvid farvevariant", "Lav profil"],
+    platingOptions: sizes,
+    lengthOptions: conditions,
+    active: true,
+    featured: false,
     sortOrder: 50
-  }),
-  alhambraBracelet({
-    slug: "alhambra-carnelian-bracelet-5-motif",
-    motif: "carnelian",
-    detail: "Røde carnelian-inspirerede firkløver-detaljer",
-    description:
-      "Armbånd i sterling sølv med 18K gold plating og røde carnelian-inspirerede firkløver-detaljer. Den varme røde tone giver smykket et levende og klassisk look, som fungerer godt både alene og i lag.",
-    images: [
-      "https://i.ibb.co/TM85hGfZ/Van-cleef-5-motif-carnelian1.png"
-    ],
+  },
+  {
+    slug: "maison-margiela-gat-red-detail",
+    name: "Maison Margiela GAT Red Detail",
+    collection: "Archive Mood",
+    price: 469900,
+    currency: "dkk",
+    metal: "Læder, ruskind og gum sole",
+    gemstone: "Hvid / grå med rød detalje",
+    image: "",
+    images: [],
+    description: "Klassisk GAT-base med en lille rød detalje for et mere arkiv-inspireret udtryk.",
+    details: ["Prototypeprodukt uden produktfoto", "Rød kontrastdetalje", "Begrænset prototype-drop"],
+    platingOptions: sizes,
+    lengthOptions: conditions,
+    active: true,
+    featured: false,
     sortOrder: 60
-  }),
-  alhambraBracelet({
-    slug: "alhambra-gold-laser-bracelet-5-motif",
-    motif: "gold laser",
-    detail: "Gyldne laser-skårne firkløver-detaljer",
-    description:
-      "Armbånd i sterling sølv med 18K gold plating og gyldne laser-skårne firkløver-detaljer. Det tonale guldlook giver et enkelt, blankt og luksuriøst udtryk, der er let at bruge til hverdag og fest.",
-    sortOrder: 70
-  }),
-  alhambraBracelet({
-    slug: "alhambra-malachite-bracelet-5-motif",
-    motif: "malachite",
-    detail: "Grønne malachite-inspirerede firkløver-detaljer",
-    description:
-      "Armbånd i sterling sølv med 18K gold plating og grønne malachite-inspirerede firkløver-detaljer. Den dybe grønne farve giver et markant, men stadig feminint look med klassisk Alhambra-inspireret form.",
-    images: [
-      "https://i.ibb.co/Zzvw4cXx/Van-cleef-5-motif-malachite1.png"
-    ],
-    sortOrder: 80
-  }),
-  alhambraBracelet({
-    slug: "alhambra-purple-chalcedony-bracelet-5-motif",
-    motif: "purple chalcedony",
-    detail: "Lilla chalcedony-inspirerede firkløver-detaljer",
-    description:
-      "Armbånd i sterling sølv med 18K gold plating og lilla chalcedony-inspirerede firkløver-detaljer. Den bløde lilla tone giver et roligt og elegant udtryk, som passer godt til et feminint lag-på-lag look.",
-    images: [
-      "https://i.ibb.co/MJJtCpf/Van-cleef-5-motif-purple-chalcedony1.png",
-      "https://i.ibb.co/r2ML37hC/Van-cleef-5-motif-purple-chalcedony2.png",
-      "https://i.ibb.co/p6wZVbfr/Van-cleef-5-motif-purple-chalcedony3.png"
-    ],
-    sortOrder: 90
-  }),
-  alhambraBracelet({
-    slug: "alhambra-tiger-eyes-bracelet-5-motif",
-    motif: "tiger eyes",
-    detail: "Brune tiger eye-inspirerede firkløver-detaljer",
-    description:
-      "Armbånd i sterling sølv med 18K gold plating og brune tiger eye-inspirerede firkløver-detaljer. De varme gyldenbrune toner giver smykket et naturligt og sofistikeret udtryk.",
-    images: [
-      "https://i.ibb.co/0jy38qLw/Van-cleef-5-motif-tiger-eyes1.png",
-      "https://i.ibb.co/Y7BtMPb3/Van-cleef-5-motif-tiger-eyes2.png"
-    ],
-    sortOrder: 100
-  }),
-  alhambraBracelet({
-    slug: "alhambra-white-pearl-bracelet-5-motif",
-    motif: "white pearl",
-    detail: "White pearl",
-    description:
-      "Armbånd i sterling sølv med 18K gold plating. Det lyse motiv giver et klassisk, blødt og tidløst look, som er nemt at kombinere med andre smykker.",
-    images: [
-      "https://i.ibb.co/Nnf40J1f/Van-cleef-5-motif-white-pearl-1.png",
-      "https://i.ibb.co/gMBsYFTP/Van-cleef-5-motif-white-pearl-2.png",
-      "https://i.ibb.co/ZndB85B/Van-cleef-5-motif-white-pearl-3.png"
-    ],
-    sortOrder: 110
-  })
+  }
 ];
 
 export const run = mutation({
@@ -237,17 +156,6 @@ export const run = mutation({
           createdAt: now,
           updatedAt: now
         });
-      }
-    }
-
-    for (const slug of removedProductSlugs) {
-      const existing = await ctx.db
-        .query("products")
-        .withIndex("by_slug", (q) => q.eq("slug", slug))
-        .first();
-
-      if (existing) {
-        await ctx.db.delete(existing._id);
       }
     }
 

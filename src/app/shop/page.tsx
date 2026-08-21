@@ -1,20 +1,11 @@
 import type { Metadata } from "next";
 import { ProductCard } from "@/components/product-card";
-import { lifeSavers, storyScript } from "@/lib/fonts";
 import { listProducts } from "@/lib/products";
 import { Search } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-const brandTitles: Record<string, string> = {
-  cartier: "Cartier",
-  "van-cleef": "Van Cleef",
-  "louis-vuitton": "Louis Vuitton",
-  hermes: "Hermes"
-};
-
 type ShopSearchParams = {
-  brand?: string;
   collection?: string;
   q?: string;
 };
@@ -24,19 +15,18 @@ export async function generateMetadata({
 }: {
   searchParams: Promise<ShopSearchParams>;
 }): Promise<Metadata> {
-  const { brand, collection, q } = await searchParams;
-  const collectionName = brand && brandTitles[brand] ? brandTitles[brand] : collection;
+  const { collection, q } = await searchParams;
   const isSearch = Boolean(q?.trim());
-  const title = collectionName ? `${collectionName} smykker` : "Shop smykker";
-  const description = collectionName
-    ? `Shop ${collectionName} smykker hos Cecilies Smykker. Find kuraterede smykker, armbånd, halskæder og ringe online.`
-    : "Shop alle smykker hos Cecilies Smykker. Find armbånd, halskæder og ringe i kuraterede kollektioner.";
+  const title = collection ? `${collection} | Maison Margiela GATs` : "Shop Maison Margiela GATs";
+  const description = collection
+    ? `Shop ${collection} hos 1989 SKO. Dansk prototype-shop til Maison Margiela GAT sneakers.`
+    : "Shop alle Maison Margiela GATs hos 1989 SKO med størrelsesvalg, kurv og checkout.";
 
   return {
     title,
     description,
     alternates: {
-      canonical: brand && brandTitles[brand] && !isSearch ? `/shop?brand=${brand}` : "/shop"
+      canonical: collection && !isSearch ? `/shop?collection=${encodeURIComponent(collection)}` : "/shop"
     },
     robots: isSearch
       ? {
@@ -45,14 +35,14 @@ export async function generateMetadata({
         }
       : undefined,
     openGraph: {
-      title: `${title} | Cecilies Smykker`,
+      title: `${title} | 1989 SKO`,
       description,
-      url: brand && brandTitles[brand] && !isSearch ? `/shop?brand=${brand}` : "/shop",
+      url: collection && !isSearch ? `/shop?collection=${encodeURIComponent(collection)}` : "/shop",
       type: "website",
       images: [
         {
-          url: "/logo-small-round.png",
-          alt: "Cecilies Smykker logo"
+          url: "/logo-1989-sko.png",
+          alt: "1989 SKO logo"
         }
       ]
     }
@@ -64,34 +54,33 @@ export default async function ShopPage({
 }: {
   searchParams: Promise<ShopSearchParams>;
 }) {
-  const { collection, brand, q } = await searchParams;
+  const { collection, q } = await searchParams;
   const query = q?.trim() ?? "";
-  const collectionName = brand && brandTitles[brand] ? brandTitles[brand] : collection;
-  const title = collectionName ?? "Shop";
+  const title = collection ?? "Alle GATs";
   const filtered = await listProducts({
-    collection: collectionName,
+    collection,
     q: query || undefined
   });
-  const pageUrl = brand && brandTitles[brand] && !query
-    ? `https://cecilies-smykker.dk/shop?brand=${brand}`
-    : "https://cecilies-smykker.dk/shop";
+  const pageUrl = collection && !query
+    ? `https://1989sko.dk/shop?collection=${encodeURIComponent(collection)}`
+    : "https://1989sko.dk/shop";
   const shopJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: `${title} hos Cecilies Smykker`,
-    description: collectionName
-      ? `Kuraterede ${collectionName} smykker hos Cecilies Smykker.`
-      : "Alle smykker hos Cecilies Smykker.",
+    name: `${title} hos 1989 SKO`,
+    description: collection
+      ? `${collection} Maison Margiela GATs hos 1989 SKO.`
+      : "Alle Maison Margiela GATs hos 1989 SKO.",
     url: pageUrl,
     isPartOf: {
-      "@id": "https://cecilies-smykker.dk/#website"
+      "@id": "https://1989sko.dk/#website"
     },
     mainEntity: {
       "@type": "ItemList",
       itemListElement: filtered.map((product, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: `https://cecilies-smykker.dk/product/${product.slug}`,
+        url: `https://1989sko.dk/product/${product.slug}`,
         name: product.name
       }))
     }
@@ -103,8 +92,8 @@ export default async function ShopPage({
       {
         "@type": "ListItem",
         position: 1,
-        name: "Cecilies Smykker",
-        item: "https://cecilies-smykker.dk"
+        name: "1989 SKO",
+        item: "https://1989sko.dk"
       },
       {
         "@type": "ListItem",
@@ -127,23 +116,22 @@ export default async function ShopPage({
       />
       <div className="container">
         <div className="mb-8">
-          <div>
-            <p className="eyebrow">Shop</p>
-            <h1 className={`${storyScript.className} mt-2 text-5xl leading-tight text-[#ca9e4b] md:text-6xl`}>
-              {title}
-            </h1>
-          </div>
+          <p className="eyebrow">Shop</p>
+          <h1 className="mt-2 text-4xl font-semibold leading-tight md:text-5xl">{title}</h1>
+          <p className="seo-intro mt-3 max-w-2xl">
+            Alle produkter er prototypevarer uden produktfotos, men med størrelser, stand, kurv og checkout klar til test.
+          </p>
         </div>
-        <form id="search" action="/shop" className="mb-8 flex max-w-xl items-center gap-3 border-b border-[#ce9494] pb-3">
-          {brand ? <input type="hidden" name="brand" value={brand} /> : null}
-          <Search className="text-[#ce9494]" size={22} strokeWidth={1.45} />
+        <form id="search" action="/shop" className="mb-8 flex max-w-xl items-center gap-3 border-b border-[var(--line-strong)] pb-3">
+          {collection ? <input type="hidden" name="collection" value={collection} /> : null}
+          <Search className="text-[var(--accent)]" size={22} strokeWidth={1.45} />
           <input
-            className={`${lifeSavers.className} min-w-0 flex-1 bg-transparent text-lg text-[var(--foreground)] outline-none placeholder:text-[#ce9494]`}
+            className="min-w-0 flex-1 bg-transparent text-base text-[var(--foreground)] outline-none placeholder:text-[var(--muted)]"
             name="q"
-            placeholder="Søg efter smykker"
+            placeholder="Søg efter model, farve eller størrelse"
             defaultValue={query}
           />
-          <button className={`${lifeSavers.className} text-[#ce9494]`} type="submit">
+          <button className="text-sm font-semibold text-[var(--accent)]" type="submit">
             Søg
           </button>
         </form>
@@ -154,7 +142,7 @@ export default async function ShopPage({
             ))}
           </div>
         ) : (
-          <p className={`${lifeSavers.className} text-lg text-[var(--muted)]`}>Ingen smykker matchede din søgning.</p>
+          <p className="text-lg text-[var(--muted)]">Ingen GATs matchede din søgning.</p>
         )}
       </div>
     </main>

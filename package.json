@@ -1,5 +1,5 @@
 {
-  "name": "cecilies-smykker",
+  "name": "1989-sko",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -25,9 +25,9 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "eslint": "latest",
+    "eslint": "9.39.1",
     "eslint-config-next": "latest",
     "tailwindcss": "latest",
-    "typescript": "latest"
+    "typescript": "5.9.3"
   }
 }

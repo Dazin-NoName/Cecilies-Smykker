@@ -5,37 +5,31 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { geistMono, geistSans, lifeSavers, storyScript } from "@/lib/fonts";
 
+const siteUrl = "https://1989sko.dk";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cecilies-smykker.dk"),
-  applicationName: "Cecilies Smykker",
+  metadataBase: new URL(siteUrl),
+  applicationName: "1989 SKO",
   title: {
-    default: "Cecilies Smykker | Dansk smykkeshop online",
-    template: "%s | Cecilies Smykker"
+    default: "1989 SKO | Maison Margiela GATs i Danmark",
+    template: "%s | 1989 SKO"
   },
   description:
-    "Cecilies Smykker er en dansk smykkeshop med kuraterede armbånd, halskæder, ringe og smykker online. Shop Cecilies Smykker med hurtig checkout.",
+    "1989 SKO er en dansk prototype-shop kun til Maison Margiela GAT sneakers med størrelser, kurv og checkout-flow.",
   keywords: [
-    "Cecilies Smykker",
-    "cecilies smykker",
-    "cecilies-smykker.dk",
-    "Cecilies Smykker webshop",
-    "Cecilies Smykker Danmark",
-    "smykker",
-    "dansk smykkeshop",
-    "armbånd",
-    "halskæder",
-    "ringe",
-    "Van Cleef smykker",
-    "Cartier smykker"
+    "1989 SKO",
+    "Maison Margiela GAT",
+    "Maison Margiela Replica",
+    "GAT sneakers",
+    "German Army Trainer",
+    "Maison Margiela sneakers Danmark",
+    "designer sneakers"
   ],
-  authors: [{ name: "Cecilies Smykker" }],
-  creator: "Cecilies Smykker",
-  publisher: "Cecilies Smykker",
-  category: "Jewelry",
+  authors: [{ name: "1989 SKO" }],
+  creator: "1989 SKO",
+  publisher: "1989 SKO",
+  category: "Footwear",
   manifest: "/manifest.webmanifest",
-  verification: {
-    google: "google45c89b68560a3d8e"
-  },
   alternates: {
     canonical: "/"
   },
@@ -50,37 +44,31 @@ export const metadata: Metadata = {
     }
   },
   icons: {
-    icon: [
-      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
-      { url: "/icon-96.png", sizes: "96x96", type: "image/png" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/favicon.ico", sizes: "any" }
-    ],
-    shortcut: "/icon-48.png",
-    apple: "/icon-192.png"
+    icon: [{ url: "/logo-1989-sko.png", sizes: "1024x1024", type: "image/png" }],
+    shortcut: "/logo-1989-sko.png",
+    apple: "/logo-1989-sko.png"
   },
   openGraph: {
-    title: "Cecilies Smykker | Dansk smykkeshop online",
-    description:
-      "Shop Cecilies Smykker online. Dansk smykkeshop med kuraterede armbånd, halskæder, ringe og smykker.",
-    url: "https://cecilies-smykker.dk",
-    siteName: "Cecilies Smykker",
+    title: "1989 SKO | Maison Margiela GATs i Danmark",
+    description: "Dansk prototype-shop kun til Maison Margiela GAT sneakers.",
+    url: siteUrl,
+    siteName: "1989 SKO",
     locale: "da_DK",
     type: "website",
     images: [
       {
-        url: "/logo-small-round.png",
-        width: 512,
-        height: 512,
-        alt: "Cecilies Smykker logo"
+        url: "/logo-1989-sko.png",
+        width: 1024,
+        height: 1024,
+        alt: "1989 SKO logo"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cecilies Smykker | Dansk smykkeshop online",
-    description: "Shop Cecilies Smykker online. Dansk smykkeshop med armbånd, halskæder og ringe.",
-    images: ["/logo-small-round.png"]
+    title: "1989 SKO | Maison Margiela GATs",
+    description: "Dansk prototype-shop kun til Maison Margiela GAT sneakers.",
+    images: ["/logo-1989-sko.png"]
   }
 };
 
@@ -89,44 +77,39 @@ const structuredData = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://cecilies-smykker.dk/#organization",
-      name: "Cecilies Smykker",
-      alternateName: ["cecilies smykker", "Cecilies Smykker webshop"],
-      url: "https://cecilies-smykker.dk",
-      logo: "https://cecilies-smykker.dk/icon-512.png",
-      image: "https://cecilies-smykker.dk/logo-small-round.png",
-      email: "ceciliessmykker@gmail.com",
-      sameAs: ["https://www.tiktok.com/@cecilies.smykker06"]
+      "@id": `${siteUrl}/#organization`,
+      name: "1989 SKO",
+      url: siteUrl,
+      logo: `${siteUrl}/logo-1989-sko.png`,
+      image: `${siteUrl}/logo-1989-sko.png`,
+      email: "kontakt@1989sko.dk"
     },
     {
       "@type": "OnlineStore",
-      "@id": "https://cecilies-smykker.dk/#store",
-      name: "Cecilies Smykker",
-      alternateName: "cecilies smykker",
-      url: "https://cecilies-smykker.dk",
-      image: "https://cecilies-smykker.dk/logo-small-round.png",
-      logo: "https://cecilies-smykker.dk/icon-512.png",
-      email: "ceciliessmykker@gmail.com",
+      "@id": `${siteUrl}/#store`,
+      name: "1989 SKO",
+      url: siteUrl,
+      image: `${siteUrl}/logo-1989-sko.png`,
+      logo: `${siteUrl}/logo-1989-sko.png`,
+      email: "kontakt@1989sko.dk",
       areaServed: "DK",
       priceRange: "DKK",
       parentOrganization: {
-        "@id": "https://cecilies-smykker.dk/#organization"
-      },
-      sameAs: ["https://www.tiktok.com/@cecilies.smykker06"]
+        "@id": `${siteUrl}/#organization`
+      }
     },
     {
       "@type": "WebSite",
-      "@id": "https://cecilies-smykker.dk/#website",
-      name: "Cecilies Smykker",
-      alternateName: ["cecilies smykker", "Cecilies Smykker webshop"],
-      url: "https://cecilies-smykker.dk",
+      "@id": `${siteUrl}/#website`,
+      name: "1989 SKO",
+      url: siteUrl,
       publisher: {
-        "@id": "https://cecilies-smykker.dk/#organization"
+        "@id": `${siteUrl}/#organization`
       },
       inLanguage: "da-DK",
       potentialAction: {
         "@type": "SearchAction",
-        target: "https://cecilies-smykker.dk/shop?q={search_term_string}",
+        target: `${siteUrl}/shop?q={search_term_string}`,
         "query-input": "required name=search_term_string"
       }
     }

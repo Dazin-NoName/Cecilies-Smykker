@@ -1,31 +1,29 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { lifeSavers } from "@/lib/fonts";
 import { formatPrice, type Product } from "@/lib/products";
+import { ProductVisual } from "@/components/product-visual";
 
 export function ProductCard({ product }: { product: Product }) {
   return (
     <article className="group">
       <Link href={`/product/${product.slug}`} className="block">
-        <div className="product-image-frame relative aspect-square bg-[#ffebeb]">
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            unoptimized
-            sizes="(max-width: 620px) 100vw, (max-width: 980px) 50vw, 25vw"
-            className="object-cover transition duration-500 group-hover:scale-[1.04]"
+        <div className="product-image-frame relative aspect-square">
+          <ProductVisual
+            name={product.name}
+            collection={product.collection}
+            colorway={product.gemstone}
+            image={product.image}
           />
-          <div className="absolute right-3 top-3 grid size-9 place-items-center bg-[rgba(255,253,248,0.9)]">
+          <div className="absolute right-3 top-3 grid size-9 place-items-center border border-[var(--line)] bg-[rgba(247,245,240,0.92)]">
             <ArrowUpRight size={16} />
           </div>
         </div>
         <div className="product-card-meta mt-3 flex items-start justify-between gap-3">
           <div>
-            <p className={`${lifeSavers.className} text-lg font-bold leading-tight text-[#ca9e4b] md:text-base`}>{product.name}</p>
+            <p className="text-base font-semibold leading-tight text-[var(--foreground)]">{product.name}</p>
+            <p className="mt-1 text-xs uppercase text-[var(--muted)]">{product.collection}</p>
           </div>
-          <p className={`${lifeSavers.className} shrink-0 text-sm font-bold`}>{formatPrice(product.price)}</p>
+          <p className="shrink-0 text-sm font-semibold">{formatPrice(product.price)}</p>
         </div>
       </Link>
     </article>

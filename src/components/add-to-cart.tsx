@@ -8,11 +8,13 @@ export type CartLine = {
   name: string;
   price: number;
   image: string;
+  collection: string;
+  colorway: string;
   variant?: string;
   quantity: number;
 };
 
-const cartKey = "cecilies-session-cart";
+const cartKey = "1989-sko-session-cart";
 
 export function readCart(): CartLine[] {
   if (typeof window === "undefined") return [];
@@ -43,6 +45,8 @@ export function addProductToCart(product: Product, variant?: string) {
           name: product.name,
           price: product.price,
           image: product.image,
+          collection: product.collection,
+          colorway: product.gemstone,
           variant,
           quantity: 1
         }

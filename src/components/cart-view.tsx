@@ -1,27 +1,24 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { Minus, Plus, Trash2 } from "lucide-react";
-import { lifeSavers } from "@/lib/fonts";
 import { formatPrice } from "@/lib/products";
 import { type CartLine, readCart, writeCart } from "@/components/add-to-cart";
+import { ProductVisual } from "@/components/product-visual";
+
+function subscribeCart(onStoreChange: () => void) {
+  window.addEventListener("cart-updated", onStoreChange);
+  return () => window.removeEventListener("cart-updated", onStoreChange);
+}
+
+function emptyCartSnapshot(): CartLine[] {
+  return [];
+}
 
 export function CartView() {
-  const [lines, setLines] = useState<CartLine[]>([]);
+  const lines = useSyncExternalStore(subscribeCart, readCart, emptyCartSnapshot);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
-
-  useEffect(() => {
-    setLines(readCart());
-
-    function sync() {
-      setLines(readCart());
-    }
-
-    window.addEventListener("cart-updated", sync);
-    return () => window.removeEventListener("cart-updated", sync);
-  }, []);
 
   const subtotal = useMemo(() => lines.reduce((total, line) => total + line.price * line.quantity, 0), [lines]);
 
@@ -29,13 +26,11 @@ export function CartView() {
     const next = lines
       .map((line) => (line.id === id ? { ...line, quantity } : line))
       .filter((line) => line.quantity > 0);
-    setLines(next);
     writeCart(next);
   }
 
   function removeLine(id: string) {
     const next = lines.filter((line) => line.id !== id);
-    setLines(next);
     writeCart(next);
   }
 
@@ -66,9 +61,9 @@ export function CartView() {
   if (lines.length === 0) {
     return (
       <div className="empty-cart">
-        <p className={`${lifeSavers.className} text-2xl text-[#ca9e4b]`}>Din kurv er tom</p>
+        <p className="text-2xl font-semibold text-[var(--accent)]">Din kurv er tom</p>
         <Link className="button shop-all-button mt-6 inline-flex w-auto" href="/shop">
-          Shop alle smykker
+          Se alle GATs
         </Link>
       </div>
     );
@@ -79,17 +74,23 @@ export function CartView() {
       <div className="grid gap-4">
         {lines.map((line) => (
           <div key={line.id} className="cart-line">
-            <Link href={`/product/${line.slug}`} className="product-image-frame relative aspect-square bg-[#ffebeb]">
-              <Image src={line.image} alt={line.name} fill sizes="112px" className="object-cover" />
+            <Link href={`/product/${line.slug}`} className="product-image-frame relative aspect-square">
+              <ProductVisual
+                compact
+                name={line.name}
+                image={line.image}
+                collection={line.collection}
+                colorway={line.colorway}
+              />
             </Link>
             <div className="flex flex-col justify-between gap-4">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <Link href={`/product/${line.slug}`} className={`${lifeSavers.className} text-xl font-bold leading-tight text-[#ca9e4b]`}>
+                  <Link href={`/product/${line.slug}`} className="text-lg font-semibold leading-tight text-[var(--foreground)]">
                     {line.name}
                   </Link>
                   {line.variant ? <p className="mt-1 text-sm text-[var(--muted)]">{line.variant}</p> : null}
-                  <p className={`${lifeSavers.className} mt-2 text-sm font-bold`}>{formatPrice(line.price)}</p>
+                  <p className="mt-2 text-sm font-semibold">{formatPrice(line.price)}</p>
                 </div>
                 <button aria-label="Fjern" onClick={() => removeLine(line.id)} className="cart-icon-button">
                   <Trash2 size={16} />
@@ -110,10 +111,10 @@ export function CartView() {
       </div>
 
       <aside className="cart-summary">
-        <p className={`${lifeSavers.className} text-2xl text-[#ca9e4b]`}>Ordre</p>
+        <p className="text-2xl font-semibold text-[var(--accent)]">Ordre</p>
         <div className="mt-5 flex items-center justify-between border-t border-[var(--line)] pt-5">
           <span>Subtotal</span>
-          <strong className={lifeSavers.className}>{formatPrice(subtotal)}</strong>
+          <strong>{formatPrice(subtotal)}</strong>
         </div>
         <button className="button primary mt-6 w-full justify-center" disabled={isCheckingOut} onClick={checkout}>
           {isCheckingOut ? "Starter checkout..." : "Gå til betaling"}

@@ -1,13 +1,8 @@
 import type { MetadataRoute } from "next";
 import { listProducts } from "@/lib/products";
 
-const siteUrl = "https://cecilies-smykker.dk";
-const brandPages = [
-  { slug: "cartier", priority: 0.85 },
-  { slug: "van-cleef", priority: 0.85 },
-  { slug: "louis-vuitton", priority: 0.7 },
-  { slug: "hermes", priority: 0.7 }
-];
+const siteUrl = "https://1989sko.dk";
+const collections = ["Classic GAT", "Black Edition", "Paint Drop", "Suede Edit", "Archive Mood"];
 
 function absoluteUrl(url: string) {
   return url.startsWith("http") ? url : `${siteUrl}${url}`;
@@ -30,11 +25,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 0.9
     },
-    ...brandPages.map((brand) => ({
-      url: `${siteUrl}/shop?brand=${brand.slug}`,
+    ...collections.map((collection) => ({
+      url: `${siteUrl}/shop?collection=${encodeURIComponent(collection)}`,
       lastModified: now,
-      changeFrequency: "daily" as const,
-      priority: brand.priority
+      changeFrequency: "weekly" as const,
+      priority: 0.75
     })),
     {
       url: `${siteUrl}/about`,
@@ -47,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.8,
-      images: (product.images.length > 0 ? product.images : [product.image]).map(absoluteUrl)
+      images: (product.images.length > 0 ? product.images : product.image ? [product.image] : ["/logo-1989-sko.png"]).map(absoluteUrl)
     }))
   ];
 }

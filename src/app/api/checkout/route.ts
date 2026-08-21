@@ -62,24 +62,24 @@ export async function POST(request: Request) {
 
     const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? new URL(request.url).origin;
     const fulfillmentNote = stripeMetadataValue(orderNotes.join(" | "));
-    const siteUrl = "https://cecilies-smykker.dk";
+    const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://1989sko.dk";
     const stripe = getStripe();
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: lineItems,
       branding_settings: {
-        background_color: "#ffebeb",
+        background_color: "#f7f5f0",
         border_style: "rounded",
-        button_color: "#151310",
-        display_name: "Cecilies Smykker",
-        font_family: "lora",
+        button_color: "#6f001d",
+        display_name: "1989 SKO",
+        font_family: "inter",
         icon: {
           type: "url",
-          url: `${siteUrl}/logo-small-round.png`
+          url: `${siteUrl}/logo-1989-sko.png`
         },
         logo: {
           type: "url",
-          url: `${siteUrl}/logo-small-round.png`
+          url: `${siteUrl}/logo-1989-sko.png`
         }
       },
       metadata: {

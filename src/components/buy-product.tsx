@@ -3,22 +3,22 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ChevronDown, CreditCard, ShoppingBag } from "lucide-react";
-import { lifeSavers } from "@/lib/fonts";
 import { type Product } from "@/lib/products";
 import { addProductToCart } from "@/components/add-to-cart";
 
-function formatVariant(plating: string, length: string) {
-  return [plating, length].filter(Boolean).join(" / ");
+function formatVariant(size: string, condition: string) {
+  return [size, condition].filter(Boolean).join(" / ");
 }
 
 export function BuyProduct({ product }: { product: Product }) {
-  const lengthOptions = product.lengthOptions ?? [];
-  const [plating, setPlating] = useState(product.platingOptions?.[0] ?? "");
-  const [length, setLength] = useState(lengthOptions[0] ?? "");
+  const sizeOptions = product.platingOptions ?? [];
+  const conditionOptions = product.lengthOptions ?? [];
+  const [size, setSize] = useState(sizeOptions[0] ?? "");
+  const [condition, setCondition] = useState(conditionOptions[0] ?? "");
   const [added, setAdded] = useState(false);
   const [isBuying, setIsBuying] = useState(false);
-  const variant = formatVariant(plating, length);
-  const showLengthPicker = lengthOptions.length > 1;
+  const variant = formatVariant(size, condition);
+  const showConditionPicker = conditionOptions.length > 1;
 
   function addToCart() {
     addProductToCart(product, variant);
@@ -53,19 +53,19 @@ export function BuyProduct({ product }: { product: Product }) {
 
   return (
     <div className="grid gap-5">
-      {product.platingOptions && product.platingOptions.length > 0 ? (
+      {sizeOptions.length > 0 ? (
         <fieldset className="grid gap-3">
-          <legend className={`${lifeSavers.className} text-base text-[#ce9494]`}>Vælg plating</legend>
+          <legend className="text-sm font-semibold text-[var(--accent)]">Vælg størrelse</legend>
           <div className="variant-grid">
-            {product.platingOptions.map((option) => (
+            {sizeOptions.map((option) => (
               <label key={option} className="variant-option">
                 <input
                   type="radio"
-                  name="plating"
+                  name="size"
                   value={option}
-                  checked={plating === option}
+                  checked={size === option}
                   onChange={() => {
-                    setPlating(option);
+                    setSize(option);
                     setAdded(false);
                   }}
                 />
@@ -76,26 +76,26 @@ export function BuyProduct({ product }: { product: Product }) {
         </fieldset>
       ) : null}
 
-      {showLengthPicker ? (
+      {showConditionPicker ? (
         <details className="length-picker">
-          <summary className={`${lifeSavers.className} length-picker-summary`}>
-            <span>Vælg længde</span>
+          <summary className="length-picker-summary">
+            <span>Vælg stand</span>
             <span className="inline-flex items-center gap-2">
-              {length}
+              {condition}
               <ChevronDown size={16} strokeWidth={1.5} />
             </span>
           </summary>
           <fieldset className="length-options pt-3">
-            <legend className="sr-only">Vælg længde</legend>
-            {lengthOptions.map((option) => (
+            <legend className="sr-only">Vælg stand</legend>
+            {conditionOptions.map((option) => (
               <label key={option} className="variant-option compact">
                 <input
                   type="radio"
-                  name="length"
+                  name="condition"
                   value={option}
-                  checked={length === option}
+                  checked={condition === option}
                   onChange={() => {
-                    setLength(option);
+                    setCondition(option);
                     setAdded(false);
                   }}
                 />
@@ -118,7 +118,7 @@ export function BuyProduct({ product }: { product: Product }) {
       </div>
 
       {added ? (
-        <Link className={`${lifeSavers.className} text-center text-[#ce9494] underline underline-offset-4`} href="/cart">
+        <Link className="text-center text-sm font-semibold text-[var(--accent)] underline underline-offset-4" href="/cart">
           Gå til kurv
         </Link>
       ) : null}

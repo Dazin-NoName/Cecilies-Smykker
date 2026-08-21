@@ -2,36 +2,18 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Cecilies Smykker",
-    short_name: "Cecilies Smykker",
-    description: "Dansk smykkeshop med armbånd, halskæder og ringe.",
+    name: "1989 SKO",
+    short_name: "1989 SKO",
+    description: "Dansk prototype-shop kun til Maison Margiela GAT sneakers.",
     start_url: "/",
     scope: "/",
     display: "standalone",
-    background_color: "#ffebeb",
-    theme_color: "#ffebeb",
+    background_color: "#f7f7f4",
+    theme_color: "#6f001d",
     icons: [
       {
-        src: "/icon-48.png",
-        sizes: "48x48",
-        type: "image/png",
-        purpose: "any"
-      },
-      {
-        src: "/icon-96.png",
-        sizes: "96x96",
-        type: "image/png",
-        purpose: "any"
-      },
-      {
-        src: "/icon-192.png",
-        sizes: "192x192",
-        type: "image/png",
-        purpose: "any"
-      },
-      {
-        src: "/icon-512.png",
-        sizes: "512x512",
+        src: "/logo-1989-sko.png",
+        sizes: "1024x1024",
         type: "image/png",
         purpose: "maskable"
       }
